@@ -9,5 +9,8 @@ under the Apache License, a copy of which is included in the C code.
 
 The example corpus is the [text8](http://mattmahoney.net/dc/text8.zip) corpus from Matt Mahoney [[more info]](http://mattmahoney.net/dc/textdata.html)
 
+As downloaded, `text8` is a single line, so I do two versions of each test, one on the original `text8` and the second on a `fmt`'ed version of `text8`
+with the text broken up into reasonable line widths.  Results on my machine available in `results.txt`.
+
 To run the benchmarks, it should be enough to issue `make`.
 
