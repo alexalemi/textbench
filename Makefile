@@ -3,9 +3,11 @@ CC = gcc
 CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
 
 
-all: tests
+all: tests fmttests
 
-tests: ctest pytest juliatest gotest ctestfmt pytestfmt juliatestfmt gotestfmt
+tests: ctest pytest juliatest gotest 
+fmttests: ctestfmt pytestfmt juliatestfmt gotestfmt
+
 
 vocab_count : vocab_count.c
 	$(CC) vocab_count.c -o vocab_count $(CFLAGS)
