@@ -5,7 +5,7 @@ CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
 
 all: tests
 
-tests: ctest pytest juliatest gotest
+tests: ctest pytest juliatest gotest ctestfmt pytestfmt juliatestfmt gotestfmt
 
 vocab_count : vocab_count.c
 	$(CC) vocab_count.c -o vocab_count $(CFLAGS)
@@ -30,6 +30,25 @@ juliatest: vocab.jl text8
 gotest: vocab.go text8
 	echo "\n---Testing Go"
 	time go run vocab.go < text8 > vocab.txt
+
+text8fmt: text8
+	fmt text8 > text8fmt
+
+ctestfmt: vocab_count text8fmt
+	echo "\n---Testing C formatted version"
+	exec time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+
+pytestfmt: vocab.py text8fmt
+	echo "\n---Testing Python formatted version"
+	time python vocab.py text8fmt > vocab.txt
+
+juliatestfmt: vocab.jl text8fmt
+	echo "\n---Testing Julia formatted version"
+	time julia vocab.jl text8fmt > vocab.txt
+
+gotestfmt: vocab.go text8fmt
+	echo "\n---Testing Go formatted version"
+	time go run vocab.go < text8fmt > vocab.txt
 
 clean:
 	rm -rf vocab_count vocab.txt
