@@ -1,3 +1,5 @@
+# TextBench
+
 A simple benchmark for text processing comparing the speeds of Julia, Go, C, and Python
 
 The C Code is taken from the [GloVE project](http://nlp.stanford.edu/projects/glove/), covered
