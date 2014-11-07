@@ -19,7 +19,7 @@ text8:
 
 ctest: vocab_count text8
 	echo "\n---Testing C"
-	exec time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
+	time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
 
 pytest: vocab.py text8
 	echo "\n---Testing Python"
@@ -38,7 +38,7 @@ text8fmt: text8
 
 ctestfmt: vocab_count text8fmt
 	echo "\n---Testing C formatted version"
-	exec time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+	time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
 
 pytestfmt: vocab.py text8fmt
 	echo "\n---Testing Python formatted version"
