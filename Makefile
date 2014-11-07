@@ -5,8 +5,8 @@ CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
 
 all: tests fmttests
 
-tests: ctest py2test juliatest gotest 
-fmttests: ctestfmt py2testfmt juliatestfmt gotestfmt
+tests: ctest py2test py3test pypytest juliatest gotest
+fmttests: ctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
 
 
 vocab_count : vocab_count.c
@@ -20,6 +20,10 @@ text8:
 ctest: vocab_count text8
 	@echo -e "\n---Testing C"
 	@time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
+
+pypytest: vocab.py text8
+	@echo -e "\n---Testing Pypy"
+	@time pypy vocab.py text8 > vocab.txt
 
 py2test: vocab.py text8
 	@echo -e "\n---Testing Python 2"
@@ -43,6 +47,10 @@ text8fmt: text8
 ctestfmt: vocab_count text8fmt
 	@echo -e "\n---Testing C formatted version"
 	@time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+
+pypytestfmt: vocab.py text8fmt
+	@echo -e "\n---Testing Pypy formatted version"
+	@time pypy vocab.py text8fmt > vocab.txt
 
 py2testfmt: vocab.py text8fmt
 	@echo -e "\n---Testing Python 2 formatted version"
