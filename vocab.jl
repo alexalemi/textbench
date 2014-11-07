@@ -1,21 +1,25 @@
-counts = Dict{String,Int}()
 
-open(ARGS[1],"r") do f
-    for line in eachline(f)
-        for word in split(line)
-            counts[word] = get(counts,word,0) + 1 
+function vocab(file)
+    cut = 10
+    counter = Dict{String, Int}()
+    open(file, "r") do io
+        for line in eachline(io)
+            for word in split(line)
+                counter[word] = 1 + get(counter, word, 0)
+            end
+        end
+    end
+
+    # Sort and display
+    guys = collect(counter)
+    sort!(guys, by=(x) -> x[2], rev=true)
+
+    for x in guys
+        if x[2] > cut
+            println(x[1], '\t',  x[2])
         end
     end
 end
 
-cut = 10
 
-guys = collect(counts)
-sort!( guys, by=(x)->x[2], rev=true )
-
-for x in guys
-    if x[2] > cut
-        println(x[1], '\t',  x[2])
-    end
-end
-
+vocab(ARGS[1])
