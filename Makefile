@@ -1,16 +1,23 @@
+# C Compiler
 CC = gcc
 #For older gcc, use -O3 or -O2 instead of -Ofast
 CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
 
+# C++ Compiler
+CXX = g++
+CXXFLAGS = -std=c++11 -Ofast -march=native -funroll-loops
+
+
 
 all: tests fmttests
 
-tests: ctest py2test py3test pypytest juliatest gotest
-fmttests: ctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
+tests: ctest cctest py2test py3test pypytest juliatest gotest
+fmttests: ctestfmt cctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
 
 
-vocab_count : vocab_count.c
-	$(CC) vocab_count.c -o vocab_count $(CFLAGS)
+vocab_count : vocab.c vocab.cc
+	$(CC) vocab.c -o vocab_c $(CFLAGS)
+	$(CXX) vocab.cc -o vocab_cc $(CXXFLAGS)
 
 text8:
 	wget http://mattmahoney.net/dc/text8.zip
@@ -19,7 +26,11 @@ text8:
 
 ctest: vocab_count text8
 	@echo -e "\n---Testing C"
-	@time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
+	@time ./vocab_c -min-count 10 -verbose 2 < text8 > vocab.txt
+
+cctest: vocab_count text8
+	@echo -e "\n---Testing C++"
+	@time ./vocab_cc text8 > vocab.txt
 
 pypytest: vocab.py text8
 	@echo -e "\n---Testing Pypy"
@@ -46,7 +57,11 @@ text8fmt: text8
 
 ctestfmt: vocab_count text8fmt
 	@echo -e "\n---Testing C formatted version"
-	@time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+	@time ./vocab_c -min-count 10 -verbose 2 < text8fmt > vocab.txt
+
+cctestfmt: vocab_count text8fmt
+	@echo -e "\n---Testing C++ formatted version"
+	@time ./vocab_cc text8fmt > vocab.txt
 
 pypytestfmt: vocab.py text8fmt
 	@echo -e "\n---Testing Pypy formatted version"
