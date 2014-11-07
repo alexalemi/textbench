@@ -18,7 +18,8 @@ fmttests: ctestfmt cctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gote
 vocab_count : vocab.c vocab.cc vocab.hs
 	$(CC) vocab.c -o vocab_c $(CFLAGS)
 	$(CXX) vocab.cc -o vocab_cc $(CXXFLAGS)
-	ghc -O2 -Wall vocab.hs
+	ghc -O2 -Wall vocab.hs -o vocab_hs
+	rustc vocab.rs --opt-level 3 -o vocab_rs
 
 text8:
 	wget http://mattmahoney.net/dc/text8.zip
@@ -33,9 +34,13 @@ cctest: vocab_count text8
 	@echo -e "\n---Testing C++"
 	@time ./vocab_cc text8 > vocab.txt
 
+rstest: vocab_count text8
+	@echo -e "\n---Testing Rust"
+	@time ./vocab_rs text8 > vocab.txt
+
 hstest: vocab_count text8
 	@echo -e "\n---Testing Haskell"
-	@time ./vocab text8 > vocab.txt
+	@time ./vocab_hs text8 > vocab.txt
 
 pypytest: vocab.py text8
 	@echo -e "\n---Testing Pypy"
@@ -68,9 +73,13 @@ cctestfmt: vocab_count text8fmt
 	@echo -e "\n---Testing C++ formatted version"
 	@time ./vocab_cc text8fmt > vocab.txt
 
+rstestfmt: vocab_count text8fmt
+	@echo -e "\n---Testing Rust formatted version"
+	@time ./vocab_rs text8fmt > vocab.txt
+
 hstestfmt: vocab_count text8fmt
 	@echo -e "\n---Testing Haskell formatted version"
-	@time ./vocab text8fmt > vocab.txt
+	@time ./vocab_hs text8fmt > vocab.txt
 
 pypytestfmt: vocab.py text8fmt
 	@echo -e "\n---Testing Pypy formatted version"
@@ -93,4 +102,4 @@ gotestfmt: vocab.go text8fmt
 	@time go run vocab.go < text8fmt > vocab.txt
 
 clean:
-	rm -rf vocab_count vocab.txt
+	rm -rf vocab_* vocab.txt
