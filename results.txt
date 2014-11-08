@@ -1,64 +1,126 @@
-echo "\n---Testing C"
 
 ---Testing C
-exec time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
+gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 BUILDING VOCABULARY
+Processed 0 tokens.[11G100000 tokens.[11G200000 tokens.[11G300000 tokens.[11G400000 tokens.[11G500000 tokens.[11G600000 tokens.[11G700000 tokens.[11G800000 tokens.[11G900000 tokens.[11G1000000 tokens.[11G1100000 tokens.[11G1200000 tokens.[11G1300000 tokens.[11G1400000 tokens.[11G1500000 tokens.[11G1600000 tokens.[11G1700000 tokens.[11G1800000 tokens.[11G1900000 tokens.[11G2000000 tokens.[11G2100000 tokens.[11G2200000 tokens.[11G2300000 tokens.[11G2400000 tokens.[11G2500000 tokens.[11G2600000 tokens.[11G2700000 tokens.[11G2800000 tokens.[11G2900000 tokens.[11G3000000 tokens.[11G3100000 tokens.[11G3200000 tokens.[11G3300000 tokens.[11G3400000 tokens.[11G3500000 tokens.[11G3600000 tokens.[11G3700000 tokens.[11G3800000 tokens.[11G3900000 tokens.[11G4000000 tokens.[11G4100000 tokens.[11G4200000 tokens.[11G4300000 tokens.[11G4400000 tokens.[11G4500000 tokens.[11G4600000 tokens.[11G4700000 tokens.[11G4800000 tokens.[11G4900000 tokens.[11G5000000 tokens.[11G5100000 tokens.[11G5200000 tokens.[11G5300000 tokens.[11G5400000 tokens.[11G5500000 tokens.[11G5600000 tokens.[11G5700000 tokens.[11G5800000 tokens.[11G5900000 tokens.[11G6000000 tokens.[11G6100000 tokens.[11G6200000 tokens.[11G6300000 tokens.[11G6400000 tokens.[11G6500000 tokens.[11G6600000 tokens.[11G6700000 tokens.[11G6800000 tokens.[11G6900000 tokens.[11G7000000 tokens.[11G7100000 tokens.[11G7200000 tokens.[11G7300000 tokens.[11G7400000 tokens.[11G7500000 tokens.[11G7600000 tokens.[11G7700000 tokens.[11G7800000 tokens.[11G7900000 tokens.[11G8000000 tokens.[11G8100000 tokens.[11G8200000 tokens.[11G8300000 tokens.[11G8400000 tokens.[11G8500000 tokens.[11G8600000 tokens.[11G8700000 tokens.[11G8800000 tokens.[11G8900000 tokens.[11G9000000 tokens.[11G9100000 tokens.[11G9200000 tokens.[11G9300000 tokens.[11G9400000 tokens.[11G9500000 tokens.[11G9600000 tokens.[11G9700000 tokens.[11G9800000 tokens.[11G9900000 tokens.[11G10000000 tokens.[11G10100000 tokens.[11G10200000 tokens.[11G10300000 tokens.[11G10400000 tokens.[11G10500000 tokens.[11G10600000 tokens.[11G10700000 tokens.[11G10800000 tokens.[11G10900000 tokens.[11G11000000 tokens.[11G11100000 tokens.[11G11200000 tokens.[11G11300000 tokens.[11G11400000 tokens.[11G11500000 tokens.[11G11600000 tokens.[11G11700000 tokens.[11G11800000 tokens.[11G11900000 tokens.[11G12000000 tokens.[11G12100000 tokens.[11G12200000 tokens.[11G12300000 tokens.[11G12400000 tokens.[11G12500000 tokens.[11G12600000 tokens.[11G12700000 tokens.[11G12800000 tokens.[11G12900000 tokens.[11G13000000 tokens.[11G13100000 tokens.[11G13200000 tokens.[11G13300000 tokens.[11G13400000 tokens.[11G13500000 tokens.[11G13600000 tokens.[11G13700000 tokens.[11G13800000 tokens.[11G13900000 tokens.[11G14000000 tokens.[11G14100000 tokens.[11G14200000 tokens.[11G14300000 tokens.[11G14400000 tokens.[11G14500000 tokens.[11G14600000 tokens.[11G14700000 tokens.[11G14800000 tokens.[11G14900000 tokens.[11G15000000 tokens.[11G15100000 tokens.[11G15200000 tokens.[11G15300000 tokens.[11G15400000 tokens.[11G15500000 tokens.[11G15600000 tokens.[11G15700000 tokens.[11G15800000 tokens.[11G15900000 tokens.[11G16000000 tokens.[11G16100000 tokens.[11G16200000 tokens.[11G16300000 tokens.[11G16400000 tokens.[11G16500000 tokens.[11G16600000 tokens.[11G16700000 tokens.[11G16800000 tokens.[11G16900000 tokens.[11G17000000 tokens.[0GProcessed 17005207 tokens.
 Counted 253854 unique words.
 Truncating vocabulary at min count 10.
 Using vocabulary of size 47134.
 
-2.60user 0.04system 0:02.65elapsed 100%CPU (0avgtext+0avgdata 32616maxresident)k
-0inputs+1080outputs (0major+6182minor)pagefaults 0swaps
-echo "\n---Testing Python"
-
----Testing Python
-time python vocab.py text8 > vocab.txt
-6.71user 0.59system 0:07.31elapsed 100%CPU (0avgtext+0avgdata 1006528maxresident)k
-0inputs+1032outputs (0major+258708minor)pagefaults 0swaps
-echo "\n---Testing Julia"
-
----Testing Julia
-time julia vocab.jl text8 > vocab.txt
-54.23user 1.06system 0:55.25elapsed 100%CPU (0avgtext+0avgdata 1573948maxresident)k
-408inputs+1024outputs (3major+396258minor)pagefaults 0swaps
-echo "\n---Testing Go"
-
----Testing Go
-time go run vocab.go < text8 > vocab.txt
-2014/10/27 23:51:57 Reading new corpus from stdin
-2014/10/27 23:52:02 Finished. Found 253854 words
-2014/10/27 23:52:02 47134 words made the cut
-5.66user 0.19system 0:05.85elapsed 100%CPU (0avgtext+0avgdata 55780maxresident)k
-256inputs+4344outputs (1major+22686minor)pagefaults 0swaps
-echo "\n---Testing C formatted version"
+2.51user 0.05system 0:02.59elapsed 98%CPU (0avgtext+0avgdata 32620maxresident)k
+8inputs+1080outputs (1major+6183minor)pagefaults 0swaps
 
 ---Testing C formatted version
-exec time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+gcc (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 BUILDING VOCABULARY
+Processed 0 tokens.[11G100000 tokens.[11G200000 tokens.[11G300000 tokens.[11G400000 tokens.[11G500000 tokens.[11G600000 tokens.[11G700000 tokens.[11G800000 tokens.[11G900000 tokens.[11G1000000 tokens.[11G1100000 tokens.[11G1200000 tokens.[11G1300000 tokens.[11G1400000 tokens.[11G1500000 tokens.[11G1600000 tokens.[11G1700000 tokens.[11G1800000 tokens.[11G1900000 tokens.[11G2000000 tokens.[11G2100000 tokens.[11G2200000 tokens.[11G2300000 tokens.[11G2400000 tokens.[11G2500000 tokens.[11G2600000 tokens.[11G2700000 tokens.[11G2800000 tokens.[11G2900000 tokens.[11G3000000 tokens.[11G3100000 tokens.[11G3200000 tokens.[11G3300000 tokens.[11G3400000 tokens.[11G3500000 tokens.[11G3600000 tokens.[11G3700000 tokens.[11G3800000 tokens.[11G3900000 tokens.[11G4000000 tokens.[11G4100000 tokens.[11G4200000 tokens.[11G4300000 tokens.[11G4400000 tokens.[11G4500000 tokens.[11G4600000 tokens.[11G4700000 tokens.[11G4800000 tokens.[11G4900000 tokens.[11G5000000 tokens.[11G5100000 tokens.[11G5200000 tokens.[11G5300000 tokens.[11G5400000 tokens.[11G5500000 tokens.[11G5600000 tokens.[11G5700000 tokens.[11G5800000 tokens.[11G5900000 tokens.[11G6000000 tokens.[11G6100000 tokens.[11G6200000 tokens.[11G6300000 tokens.[11G6400000 tokens.[11G6500000 tokens.[11G6600000 tokens.[11G6700000 tokens.[11G6800000 tokens.[11G6900000 tokens.[11G7000000 tokens.[11G7100000 tokens.[11G7200000 tokens.[11G7300000 tokens.[11G7400000 tokens.[11G7500000 tokens.[11G7600000 tokens.[11G7700000 tokens.[11G7800000 tokens.[11G7900000 tokens.[11G8000000 tokens.[11G8100000 tokens.[11G8200000 tokens.[11G8300000 tokens.[11G8400000 tokens.[11G8500000 tokens.[11G8600000 tokens.[11G8700000 tokens.[11G8800000 tokens.[11G8900000 tokens.[11G9000000 tokens.[11G9100000 tokens.[11G9200000 tokens.[11G9300000 tokens.[11G9400000 tokens.[11G9500000 tokens.[11G9600000 tokens.[11G9700000 tokens.[11G9800000 tokens.[11G9900000 tokens.[11G10000000 tokens.[11G10100000 tokens.[11G10200000 tokens.[11G10300000 tokens.[11G10400000 tokens.[11G10500000 tokens.[11G10600000 tokens.[11G10700000 tokens.[11G10800000 tokens.[11G10900000 tokens.[11G11000000 tokens.[11G11100000 tokens.[11G11200000 tokens.[11G11300000 tokens.[11G11400000 tokens.[11G11500000 tokens.[11G11600000 tokens.[11G11700000 tokens.[11G11800000 tokens.[11G11900000 tokens.[11G12000000 tokens.[11G12100000 tokens.[11G12200000 tokens.[11G12300000 tokens.[11G12400000 tokens.[11G12500000 tokens.[11G12600000 tokens.[11G12700000 tokens.[11G12800000 tokens.[11G12900000 tokens.[11G13000000 tokens.[11G13100000 tokens.[11G13200000 tokens.[11G13300000 tokens.[11G13400000 tokens.[11G13500000 tokens.[11G13600000 tokens.[11G13700000 tokens.[11G13800000 tokens.[11G13900000 tokens.[11G14000000 tokens.[11G14100000 tokens.[11G14200000 tokens.[11G14300000 tokens.[11G14400000 tokens.[11G14500000 tokens.[11G14600000 tokens.[11G14700000 tokens.[11G14800000 tokens.[11G14900000 tokens.[11G15000000 tokens.[11G15100000 tokens.[11G15200000 tokens.[11G15300000 tokens.[11G15400000 tokens.[11G15500000 tokens.[11G15600000 tokens.[11G15700000 tokens.[11G15800000 tokens.[11G15900000 tokens.[11G16000000 tokens.[11G16100000 tokens.[11G16200000 tokens.[11G16300000 tokens.[11G16400000 tokens.[11G16500000 tokens.[11G16600000 tokens.[11G16700000 tokens.[11G16800000 tokens.[11G16900000 tokens.[11G17000000 tokens.[0GProcessed 17005207 tokens.
 Counted 253854 unique words.
 Truncating vocabulary at min count 10.
 Using vocabulary of size 47134.
 
-2.65user 0.03system 0:02.69elapsed 99%CPU (0avgtext+0avgdata 32624maxresident)k
-0inputs+1088outputs (0major+6184minor)pagefaults 0swaps
-echo "\n---Testing Python formatted version"
+2.62user 0.05system 0:02.68elapsed 99%CPU (0avgtext+0avgdata 32620maxresident)k
+0inputs+1080outputs (0major+6185minor)pagefaults 0swaps
 
----Testing Python formatted version
-time python vocab.py text8fmt > vocab.txt
-7.08user 0.06system 0:07.15elapsed 99%CPU (0avgtext+0avgdata 58460maxresident)k
-0inputs+1024outputs (0major+13674minor)pagefaults 0swaps
-echo "\n---Testing Julia formatted version"
+---Testing C++
+g++ (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+4.12user 0.05system 0:04.19elapsed 99%CPU (0avgtext+0avgdata 32552maxresident)k
+240inputs+1024outputs (2major+8134minor)pagefaults 0swaps
+
+---Testing C++ formatted version
+g++ (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+4.01user 0.06system 0:04.09elapsed 99%CPU (0avgtext+0avgdata 32548maxresident)k
+0inputs+1024outputs (0major+8136minor)pagefaults 0swaps
+
+---Testing Python 2
+Python 2.7.8 :: Anaconda 2.1.0 (64-bit)
+12.34user 0.71system 0:13.08elapsed 99%CPU (0avgtext+0avgdata 1007692maxresident)k
+0inputs+1024outputs (0major+222225minor)pagefaults 0swaps
+
+---Testing Python 2 formatted version
+Python 2.7.8 :: Anaconda 2.1.0 (64-bit)
+12.30user 0.11system 0:12.43elapsed 99%CPU (0avgtext+0avgdata 60108maxresident)k
+0inputs+1024outputs (0major+26945minor)pagefaults 0swaps
+
+---Testing Python 3
+Python 3.4.0
+11.91user 0.61system 0:12.56elapsed 99%CPU (0avgtext+0avgdata 1188220maxresident)k
+264inputs+1024outputs (2major+287853minor)pagefaults 0swaps
+
+---Testing Python 3 formatted version
+Python 3.4.0
+11.64user 0.09system 0:11.76elapsed 99%CPU (0avgtext+0avgdata 54812maxresident)k
+0inputs+1024outputs (0major+15217minor)pagefaults 0swaps
+
+---Testing Pypy
+Python 2.7.3 (87aa9de10f9c, Nov 24 2013, 18:48:13)
+[PyPy 2.2.1 with GCC 4.6.3]
+7.48user 1.18system 0:08.68elapsed 99%CPU (0avgtext+0avgdata 1203724maxresident)k
+160inputs+1024outputs (2major+419739minor)pagefaults 0swaps
+
+---Testing Pypy formatted version
+Python 2.7.3 (87aa9de10f9c, Nov 24 2013, 18:48:13)
+[PyPy 2.2.1 with GCC 4.6.3]
+8.15user 0.09system 0:08.26elapsed 99%CPU (0avgtext+0avgdata 91472maxresident)k
+0inputs+1024outputs (0major+22400minor)pagefaults 0swaps
+
+---Testing Julia
+julia version 0.3.2
+58.12user 0.86system 0:59.10elapsed 99%CPU (0avgtext+0avgdata 1577408maxresident)k
+0inputs+1040outputs (0major+370039minor)pagefaults 0swaps
 
 ---Testing Julia formatted version
-time julia vocab.jl text8fmt > vocab.txt
-32.35user 0.22system 0:32.53elapsed 100%CPU (0avgtext+0avgdata 175408maxresident)k
-0inputs+1024outputs (0major+53534minor)pagefaults 0swaps
-echo "\n---Testing Go formatted version"
+julia version 0.3.2
+33.44user 0.20system 0:33.68elapsed 99%CPU (0avgtext+0avgdata 174032maxresident)k
+0inputs+1024outputs (0major+53664minor)pagefaults 0swaps
+
+---Testing Go
+go version go1.3.1 linux/amd64
+2014/11/07 19:42:01 Reading new corpus from stdin
+2014/11/07 19:42:07 Finished. Found 253854 words
+2014/11/07 19:42:07 47134 words made the cut
+5.65user 0.20system 0:05.85elapsed 100%CPU (0avgtext+0avgdata 55748maxresident)k
+1176inputs+4344outputs (5major+21800minor)pagefaults 0swaps
 
 ---Testing Go formatted version
-time go run vocab.go < text8fmt > vocab.txt
-2014/10/27 23:52:45 Reading new corpus from stdin
-2014/10/27 23:52:50 Finished. Found 253854 words
-2014/10/27 23:52:50 47134 words made the cut
-5.66user 0.15system 0:05.79elapsed 100%CPU (0avgtext+0avgdata 55952maxresident)k
-0inputs+4344outputs (0major+22738minor)pagefaults 0swaps
+go version go1.3.1 linux/amd64
+2014/11/07 19:42:07 Reading new corpus from stdin
+2014/11/07 19:42:13 Finished. Found 253854 words
+2014/11/07 19:42:13 47134 words made the cut
+5.67user 0.19system 0:05.86elapsed 99%CPU (0avgtext+0avgdata 55960maxresident)k
+8inputs+4344outputs (0major+22640minor)pagefaults 0swaps
+
+---Testing Haskell
+The Glorious Glasgow Haskell Compilation System, version 7.6.3
+32.87user 0.23system 0:33.21elapsed 99%CPU (0avgtext+0avgdata 269560maxresident)k
+224inputs+1368outputs (1major+67493minor)pagefaults 0swaps
+
+---Testing Haskell formatted version
+The Glorious Glasgow Haskell Compilation System, version 7.6.3
+33.28user 0.23system 0:33.60elapsed 99%CPU (0avgtext+0avgdata 280116maxresident)k
+0inputs+1368outputs (0major+70113minor)pagefaults 0swaps
+
+---Testing Rust
+rustc 0.12.0 (ba4081a5a 2014-10-07 13:44:41 -0700)
+4.81user 0.15system 0:04.98elapsed 99%CPU (0avgtext+0avgdata 162824maxresident)k
+0inputs+24outputs (0major+3530minor)pagefaults 0swaps
+
+---Testing Rust formatted version
+rustc 0.12.0 (ba4081a5a 2014-10-07 13:44:41 -0700)
+5.32user 0.06system 0:05.40elapsed 99%CPU (0avgtext+0avgdata 66556maxresident)k
+0inputs+8outputs (0major+1618minor)pagefaults 0swaps
