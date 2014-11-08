@@ -11,8 +11,8 @@ CXXFLAGS = -std=c++11 -Ofast -march=native -funroll-loops
 
 all: tests fmttests
 
-tests: ctest cctest py2test py3test pypytest juliatest gotest
-fmttests: ctestfmt cctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
+tests: ctest cctest rstest hstest py2test py3test pypytest juliatest gotest
+fmttests: ctestfmt cctestfmt rstestfmt hstestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
 
 
 vocab_count : vocab.c vocab.cc vocab.hs
