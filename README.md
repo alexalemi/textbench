@@ -14,3 +14,8 @@ with the text broken up into reasonable line widths.  Results on my machine avai
 
 To run the benchmarks, it should be enough to issue `make`.
 
+The results in `results.txt` were generated on a quad core x86 machine running Ubuntu 13.04.
+
+Thanks to @remusao for the haskell, cpp, and python3 versions as well as general improvements.
+
+
