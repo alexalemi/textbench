@@ -1,16 +1,25 @@
+# C Compiler
 CC = gcc
 #For older gcc, use -O3 or -O2 instead of -Ofast
 CFLAGS = -lm -pthread -Ofast -march=native -funroll-loops -Wno-unused-result
 
+# C++ Compiler
+CXX = g++
+CXXFLAGS = -std=c++11 -Ofast -march=native -funroll-loops
+
+
 
 all: tests fmttests
 
-tests: ctest pytest juliatest gotest 
-fmttests: ctestfmt pytestfmt juliatestfmt gotestfmt
+tests: ctest cctest py2test py3test pypytest juliatest gotest
+fmttests: ctestfmt cctestfmt py2testfmt py3testfmt pypytestfmt juliatestfmt gotestfmt
 
 
-vocab_count : vocab_count.c
-	$(CC) vocab_count.c -o vocab_count $(CFLAGS)
+vocab_count : vocab.c vocab.cc vocab.hs
+	$(CC) vocab.c -o vocab_c $(CFLAGS)
+	$(CXX) vocab.cc -o vocab_cc $(CXXFLAGS)
+	ghc -O2 -Wall vocab.hs -o vocab_hs
+	rustc vocab.rs --opt-level 3 -o vocab_rs
 
 text8:
 	wget http://mattmahoney.net/dc/text8.zip
@@ -18,39 +27,79 @@ text8:
 	rm text8.zip
 
 ctest: vocab_count text8
-	echo "\n---Testing C"
-	exec time ./vocab_count -min-count 10 -verbose 2 < text8 > vocab.txt
+	@echo -e "\n---Testing C"
+	@time ./vocab_c -min-count 10 -verbose 2 < text8 > vocab.txt
 
-pytest: vocab.py text8
-	echo "\n---Testing Python"
-	time python vocab.py text8 > vocab.txt
+cctest: vocab_count text8
+	@echo -e "\n---Testing C++"
+	@time ./vocab_cc text8 > vocab.txt
+
+rstest: vocab_count text8
+	@echo -e "\n---Testing Rust"
+	@time ./vocab_rs text8 > vocab.txt
+
+hstest: vocab_count text8
+	@echo -e "\n---Testing Haskell"
+	@time ./vocab_hs text8 > vocab.txt
+
+pypytest: vocab.py text8
+	@echo -e "\n---Testing Pypy"
+	@time pypy vocab.py text8 > vocab.txt
+
+py2test: vocab.py text8
+	@echo -e "\n---Testing Python 2"
+	@time python2 vocab.py text8 > vocab.txt
+
+py3test: vocab.py text8
+	@echo -e "\n---Testing Python 3"
+	@time python3 vocab.py text8 > vocab.txt
 
 juliatest: vocab.jl text8
-	echo "\n---Testing Julia"
-	time julia vocab.jl text8 > vocab.txt
+	@echo -e "\n---Testing Julia"
+	@time julia vocab.jl text8 > vocab.txt
 
 gotest: vocab.go text8
-	echo "\n---Testing Go"
-	time go run vocab.go < text8 > vocab.txt
+	@echo -e "\n---Testing Go"
+	@time go run vocab.go < text8 > vocab.txt
 
 text8fmt: text8
 	fmt text8 > text8fmt
 
 ctestfmt: vocab_count text8fmt
-	echo "\n---Testing C formatted version"
-	exec time ./vocab_count -min-count 10 -verbose 2 < text8fmt > vocab.txt
+	@echo -e "\n---Testing C formatted version"
+	@time ./vocab_c -min-count 10 -verbose 2 < text8fmt > vocab.txt
 
-pytestfmt: vocab.py text8fmt
-	echo "\n---Testing Python formatted version"
-	time python vocab.py text8fmt > vocab.txt
+cctestfmt: vocab_count text8fmt
+	@echo -e "\n---Testing C++ formatted version"
+	@time ./vocab_cc text8fmt > vocab.txt
+
+rstestfmt: vocab_count text8fmt
+	@echo -e "\n---Testing Rust formatted version"
+	@time ./vocab_rs text8fmt > vocab.txt
+
+hstestfmt: vocab_count text8fmt
+	@echo -e "\n---Testing Haskell formatted version"
+	@time ./vocab_hs text8fmt > vocab.txt
+
+pypytestfmt: vocab.py text8fmt
+	@echo -e "\n---Testing Pypy formatted version"
+	@time pypy vocab.py text8fmt > vocab.txt
+
+py2testfmt: vocab.py text8fmt
+	@echo -e "\n---Testing Python 2 formatted version"
+	@time python2 vocab.py text8fmt > vocab.txt
+
+py3testfmt: vocab.py text8fmt
+	@echo -e "\n---Testing Python 3 formatted version"
+	@time python3 vocab.py text8fmt > vocab.txt
 
 juliatestfmt: vocab.jl text8fmt
-	echo "\n---Testing Julia formatted version"
-	time julia vocab.jl text8fmt > vocab.txt
+	@echo -e "\n---Testing Julia formatted version"
+	@time julia vocab.jl text8fmt > vocab.txt
 
 gotestfmt: vocab.go text8fmt
-	echo "\n---Testing Go formatted version"
-	time go run vocab.go < text8fmt > vocab.txt
+	@echo -e "\n---Testing Go formatted version"
+	@time go run vocab.go < text8fmt > vocab.txt
 
 clean:
-	rm -rf vocab_count vocab.txt
+	rm -rf vocab_* vocab.txt
